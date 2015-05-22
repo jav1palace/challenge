@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Cube challenge</title>
+</h:head>
+<h:body>
+	<h1>Cube challenge</h1>
+
+	<h:form id="cubes">
+		<fieldset>
+			<legend>Cube 1</legend>
+			x:<h:inputText  id="x1" value="#{controller.cube1.center.x}" /><br/>
+			y:<h:inputText  id="y1" value="#{controller.cube1.center.y}" /><br/>
+			z:<h:inputText  id="z1" value="#{controller.cube1.center.z}" /><br/>
+
+			size:<h:inputText id="size1" value="#{controller.cube1.size}"  >
+			<f:validateDoubleRange minimum="1"/></h:inputText>
+			<h:message for="cubes:size1" />
+		</fieldset>
+		
+		<fieldset>
+			<legend>Cube 2</legend>
+			x:<h:inputText  id="x2" value="#{controller.cube2.center.x}" /><br/>
+			y:<h:inputText  id="y2" value="#{controller.cube2.center.y}" /><br/>
+			z:<h:inputText  id="z2" value="#{controller.cube2.center.z}" /><br/>
+
+			size:<h:inputText  id="size2" value="#{controller.cube2.size}"  >
+			<f:validateDoubleRange for="size2" minimum="1" /></h:inputText>
+			<h:message for="cubes:size2" />
+		</fieldset>
+		<h:commandButton value="Check" type="submit"
+			action="#{controller.calculate}" />
+	</h:form>
+	
+		<h:panelGroup rendered="#{not empty controller.info}">
+			<h3>¿Intersected?</h3><h4>#{controller.info.get("intersect")}</h4>
+			<h3>Shared volume</h3><h4>#{controller.info.get("sharedVolume")} m<sup>3</sup></h4>
+		</h:panelGroup>
+
+</h:body>
+</html>
